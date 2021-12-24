@@ -14,3 +14,12 @@ def get_angle(p1, p2, p3):
 def getTurn(x):
   x=np.array(x[10:-10])
   return len(x[x>15])
+
+df = pd.read_csv(csv_files[0][180])
+angle = [0, 0]
+for i in range(2, len(df['x'])):
+  p1 = [df.x[i-2], df.y[i-2]]
+  p2 = [df.x[i-1], df.y[i-1]]
+  p3 = [df.x[i], df.y[i]]
+  angle.append(get_angle(p1, p2, p3))
+df['angle'] = angle
