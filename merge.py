@@ -26,3 +26,16 @@ def angle_to(x2, y2, x1, y1, rotation=0, clockwise=False):
     if not clockwise:
         angle = -angle
     return angle % 360
+
+  def dd(df):
+  total = pd.DataFrame(columns = ['x', 'y', 'd', 's', 't', 'angle', 'sharp_turn', 'sharp_turn_count', 'hway'])
+  df = drive(df)
+  for i in range(200):
+    tr = dist(df[i])
+    total = pd.concat([total, tr])
+  total['t'] = total.index
+  return total
+
+def combine(file, x):
+  df = dd(file[x])
+  return compress(df)
